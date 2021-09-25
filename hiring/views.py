@@ -63,13 +63,13 @@ class VacancyView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(VacancyView, self).get_context_data(**kwargs)
-        context['company_title'] = Vacancy.objects.get(id=self.kwargs['vacancy_id']).company.name
-        context['employee_count'] = Vacancy.objects.get(id=self.kwargs['vacancy_id']).company.employee_count
-        context['location'] = Vacancy.objects.get(id=self.kwargs['vacancy_id']).company.location
+        context['company_name'] = self.object.company.name
+        context['employee_count'] = self.object.company.employee_count
+        context['location'] = self.object.company.location
         return context
 
 
-def custom_handler_404(request, exeption):
+def custom_handler_404(request, exception):
     return HttpResponseNotFound('Неверный запрос')
 
 
