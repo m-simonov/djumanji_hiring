@@ -34,7 +34,7 @@
         {% for specialty in specialties %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
-            <img class="mx-auto d-block" src="https://place-hold.it/80x80" width="80" height="80" alt="">
+              <img class="mx-auto d-block" src="{{ specialty.picture.url }}" width="80" height="80" alt="">
             <div class="card-body">
               <p class="card-text mb-2">{{ specialty.title }}</p>
               <p class="card-text"><a href="{% url 'category' specialty.code %}">{{ specialty.vacancy_count }} вакансий</a></p>
@@ -53,11 +53,11 @@
         {% for company in companies %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-5 text-center mb-4">
-            <a href="#" style="max-width: 150px;" class="mx-auto d-block">
-                <img class="mx-auto d-block" src="{{ company.logo }}" width="150" alt="">
+            <a href="{% url 'company' company.id %}" style="max-width: 150px;" class="mx-auto d-block">
+                <img class="mx-auto d-block" src="{{ company.logo.url }}" width="150" alt="">
             </a>
             <div class="card-body">
-                <p class="card-text"><a href="#">{{ company.vacancy_count }} вакансий</a></p>
+                <p class="card-text"><a href="{% url 'company' company.id %}">{{ company.vacancy_count }} вакансий</a></p>
             </div>
           </div>
         </div>
