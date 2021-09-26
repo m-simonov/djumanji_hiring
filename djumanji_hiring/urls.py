@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from accounts.views import MyLoginView, MySignupView, SentView
 from hiring.views import MainView, VacanciesView, VacanciesCategoryView, \
         CompanyView, VacancyView, custom_handler_404, custom_handler_500
+from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,6 +34,13 @@ urlpatterns = [
     path('vacancies/cat/<str:category>', VacanciesCategoryView.as_view(), name='category'),
     path('companies/<int:company_id>', CompanyView.as_view(), name='company'),
     path('vacancies/<int:vacancy_id>', VacancyView.as_view(), name='vacancy'),
+    path('vacancies/<int:vacancy_id>/send/', SentView.as_view(), name='sent'),
+]
+
+urlpatterns += [
+    path('login/', MyLoginView.as_view(), name='login'),
+    path('signup/', MySignupView.as_view(), name='signup'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 
 if settings.DEBUG:
