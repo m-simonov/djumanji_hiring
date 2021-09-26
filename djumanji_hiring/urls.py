@@ -13,19 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.urls import path
 
 from hiring.views import MainView, VacanciesView, VacanciesCategoryView, \
         CompanyView, VacancyView, custom_handler_404, custom_handler_500
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 handler404 = custom_handler_404
 handler500 = custom_handler_500
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', MainView.as_view(), name='main'),
     path('vacancies/', VacanciesView.as_view(), name='vacancies'),
     path('vacancies/cat/<str:category>', VacanciesCategoryView.as_view(), name='category'),
     path('companies/<int:company_id>', CompanyView.as_view(), name='company'),
     path('vacancies/<int:vacancy_id>', VacancyView.as_view(), name='vacancy'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
