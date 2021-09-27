@@ -37,5 +37,3 @@ class VacancyForm(forms.ModelForm):
             'salary_min': 'Зарплата от',
             'salary_max': 'Зарплата до',
         }
-
-

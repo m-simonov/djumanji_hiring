@@ -2,16 +2,14 @@ from django.db.models import Count
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView, TemplateView, DetailView, ListView
-from django.views import View
+from django.views.generic import CreateView, TemplateView, ListView
 from django.shortcuts import redirect
 
 from accounts.mixins import CompanyAccessMixin
 from accounts.forms import CompanyForm, VacancyForm
-from hiring.models import Company, Vacancy, Application
+from hiring.models import Company, Vacancy
 
 
 class MyLoginView(LoginView):
@@ -54,7 +52,6 @@ class CreateCompanyView(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
             create_company.save()
             return redirect('my_company')
         return render(request, 'accounts/company-edit.html', context={'form': form})
-
 
 
 class MyCompanyView(LoginRequiredMixin, CompanyAccessMixin, TemplateView):

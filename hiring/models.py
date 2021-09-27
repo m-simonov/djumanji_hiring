@@ -20,7 +20,11 @@ class Company(models.Model):
 class Specialty(models.Model):
     code = models.CharField(max_length=24)
     title = models.CharField(max_length=64)
-    picture = models.ImageField(upload_to=MEDIA_SPECIALITY_IMAGE_DIR, height_field='height_field', width_field='width_field')
+    picture = models.ImageField(
+        upload_to=MEDIA_SPECIALITY_IMAGE_DIR,
+        height_field='height_field',
+        width_field='width_field'
+    )
     height_field = models.PositiveIntegerField(default=0)
     width_field = models.PositiveIntegerField(default=0)
 

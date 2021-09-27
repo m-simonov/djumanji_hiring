@@ -3,7 +3,7 @@ from django.db.models import Count
 from django.http import HttpResponseNotFound, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render, redirect
 
-from hiring.models import Company, Specialty, Vacancy, Application
+from hiring.models import Company, Specialty, Vacancy
 from hiring.forms import ApplicationForm
 
 
