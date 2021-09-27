@@ -19,13 +19,14 @@
             <section class="tab-pane fade show active">
               <h2 class="h4 pt-2 pb-3">Вакансии</h2>
               <!-- vacancy state 1 -->
+              {% for vacancy in vacancies %}
               <div class="card mt-3">
                 <div class="card-body px-4">
                   <div class="row align-items-center">
                     <div class="col-6 col-lg-8">
-                      <a href="#" class="mb-1">Backend-разработчик</a>
+                        <a href="#" class="mb-1">{{ vacancy.title }}</a>
                       <p class="mb-1">
-                        <span class="mr-4">120  000</span><a href="#" class="text-info">3 отклика</a>
+                      <span class="mr-4">{{ vacancy.salary_max }}</span><a href="#" class="text-info">{{ vacancy.applications_count }} откликов</a>
                       </p>
                     </div>
                     <div class="col-6 col-lg-4 text-right">
@@ -34,24 +35,11 @@
                   </div>
                 </div>
               </div>
+              {% endfor %}
               <!-- END vacancy state 1 -->
-              <!-- vacancy state 2 -->
-              <div class="card mt-3">
-                <div class="card-body px-4">
-                  <div class="row align-items-center">
-                    <div class="col-6 col-lg-8">
-                      <a href="#" class="mb-1">Backend-разработчик</a>
-                      <p class="mb-1">
-                        <span class="mr-4">90  000</span><span class="text-muted">Нет откликов</span>
-                      </p>
-                    </div>
-                    <div class="col-6 col-lg-4 text-right">
-                      <a href="#" class="btn btn-outline-info">Изменить</a>
-                    </div>
-                  </div>
-                </div>
+              <div class="card-body px-0">
+                <a href="#" class="btn btn-outline-info">Добавить</a>
               </div>
-              <!-- END vacancy state 2 -->
             </section>
           </div>
         </div>

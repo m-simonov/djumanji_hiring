@@ -1,9 +1,10 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Count
 from django.http import HttpResponseNotFound, HttpResponseServerError
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 
-from hiring.models import Company, Specialty, Vacancy
+from hiring.models import Company, Specialty, Vacancy, Application
+from hiring.forms import ApplicationForm
 
 
 class MainView(TemplateView):
@@ -66,7 +67,18 @@ class VacancyView(DetailView):
         context['company_name'] = self.object.company.name
         context['employee_count'] = self.object.company.employee_count
         context['location'] = self.object.company.location
+        context['form'] = ApplicationForm
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            application = form.save(commit=False)
+            form.instance.vacancy_id = self.kwargs['vacancy_id']
+            form.instance.user_id = request.user.id
+            application.save()
+            return redirect('sent', self.kwargs['vacancy_id'])
+        return render(request, 'hiring/vacancy.html', context={'form': form})
 
 
 def custom_handler_404(request, exception):

@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from accounts.views import MyLoginView, MySignupView, SentView
+from accounts.views import MyLoginView, MySignupView, SentView, LetsStartCompanyView, \
+        CreateCompanyView, MyCompanyView, CompanyVacanciesView, CreateVacancyView, \
+        MyCompanyVacansyView
 from hiring.views import MainView, VacanciesView, VacanciesCategoryView, \
         CompanyView, VacancyView, custom_handler_404, custom_handler_500
 from django.contrib.auth.views import LogoutView
@@ -34,7 +36,14 @@ urlpatterns = [
     path('vacancies/cat/<str:category>', VacanciesCategoryView.as_view(), name='category'),
     path('companies/<int:company_id>', CompanyView.as_view(), name='company'),
     path('vacancies/<int:vacancy_id>', VacancyView.as_view(), name='vacancy'),
+
     path('vacancies/<int:vacancy_id>/send/', SentView.as_view(), name='sent'),
+    path('mycompany/letsstart/', LetsStartCompanyView.as_view(), name='letsstart'),
+    path('mycompany/create/', CreateCompanyView.as_view(), name='create_my_company'),
+    path('mycompany/', MyCompanyView.as_view(), name='my_company'),
+    path('mycompany/vacancies/', CompanyVacanciesView.as_view(), name='my_company_vacancies'),
+    path('mycompany/vacancies/create/', CreateVacancyView.as_view(), name='create_vacancy'),
+    path('mycompany/vacancies/<int:vacancy_id>', MyCompanyVacansyView.as_view(), name='my_company_vacancy'),
 ]
 
 urlpatterns += [

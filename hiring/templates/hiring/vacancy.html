@@ -23,25 +23,20 @@
               {{ vacancy.description }}
             {% endautoescape %}
           </div>
-          <form action="/echo" method="post" class="card mt-4 mb-3" enctype="multipart/form-data">
-            {% csrf_token %}
+          {% if user.is_authenticated %}
+          <form method="post" class="card mt-4 mb-3" enctype="multipart/form-data">
             <div class="card-body mx-3">
-              <p class="h5 mt-3 font-weight-normal">Отозваться на вакансию</p>
-              <div class="form-group">
-                <label class="mb-1 mt-2" for="userName">Вас зовут</label>
-                <input class="form-control" type="text" placeholder="" id="userName">
-              </div>
-              <div class="form-group">
-                <label class="mb-1" for="userPhone">Ваш телефон</label>
-                <input class="form-control" type="tel" placeholder="" id="userPhone">
-              </div>
-              <div class="form-group">
-                <label class="mb-1" for="userMsg" >Сопроводительное письмо</label>
-                <textarea class="form-control" rows="8" id="userMsg"></textarea>
-              </div>
+            <p class="h5 mt-3 font-weight-normal">Отозваться на вакансию</p>
+            {% load crispy_forms_tags %}
+            {% crispy form "bootstrap4" %}
               <input type="submit" class="btn btn-primary mt-4 mb-2" value="Записаться на пробный урок">
             </div>
           </form>
+          {% else %}
+          <div class="card-body mx-3">
+              <p class="h6 mt-3 font-weight-normal">Чтобы отправить отклик на эту вакансию <a href="{% url 'login' %}">войдите в аккаунт</a> или <a href="{% url 'signup' %}">зарегестрируйтесь</a></p>
+          </div>
+          {% endif %}
         </section>
       </div>
     </div>
