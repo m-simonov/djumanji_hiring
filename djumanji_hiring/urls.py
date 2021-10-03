@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from accounts.views import (CompanyVacanciesView, CreateCompanyView,
-                            CreateVacancyView, LetsStartCompanyView,
+from accounts.views import (MyCompanyVacanciesView, CreateMyCompanyView,
+                            CreateVacancyView, LetsStartMyCompanyView,
                             MyCompanyVacansyView, MyCompanyView, MyLoginView,
                             MySignupView, SentView)
 from django.conf import settings
@@ -38,10 +38,10 @@ urlpatterns = [
     path('vacancies/<int:vacancy_id>', VacancyView.as_view(), name='vacancy'),
 
     path('vacancies/<int:vacancy_id>/send/', SentView.as_view(), name='sent'),
-    path('mycompany/letsstart/', LetsStartCompanyView.as_view(), name='letsstart'),
-    path('mycompany/create/', CreateCompanyView.as_view(), name='create_my_company'),
+    path('mycompany/letsstart/', LetsStartMyCompanyView.as_view(), name='letsstart'),
+    path('mycompany/create/', CreateMyCompanyView.as_view(), name='create_my_company'),
     path('mycompany/', MyCompanyView.as_view(), name='my_company'),
-    path('mycompany/vacancies/', CompanyVacanciesView.as_view(), name='my_company_vacancies'),
+    path('mycompany/vacancies/', MyCompanyVacanciesView.as_view(), name='my_company_vacancies'),
     path('mycompany/vacancies/create/', CreateVacancyView.as_view(), name='create_vacancy'),
     path('mycompany/vacancies/<int:vacancy_id>', MyCompanyVacansyView.as_view(), name='my_company_vacancy'),
 ]

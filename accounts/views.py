@@ -27,18 +27,18 @@ class SentView(TemplateView):
     template_name = 'accounts/sent.html'
 
 
-class LetsStartCompanyView(LoginRequiredMixin, TemplateView):
+class LetsStartMyCompanyView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/company-create.html'
 
 
-class CreateCompanyView(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
+class CreateMyCompanyView(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
     template_name = 'accounts/company-edit.html'
     success_message = 'Информация о компании обновлена'
     form_class = CompanyForm
 
     def get_context_data(self, **kwargs):
         form = CompanyForm
-        context = super(CreateCompanyView, self).get_context_data(**kwargs)
+        context = super(CreateMyCompanyView, self).get_context_data(**kwargs)
         context['company'] = Company.objects.filter(owner_id=self.request.user.id)
         context['form'] = form
         return context
@@ -80,7 +80,7 @@ class MyCompanyView(LoginRequiredMixin, CompanyAccessMixin, TemplateView):
         return render(request, 'accounts/company-edit.html', context={'form': form})
 
 
-class CompanyVacanciesView(LoginRequiredMixin, CompanyAccessMixin, ListView):
+class MyCompanyVacanciesView(LoginRequiredMixin, CompanyAccessMixin, ListView):
     template_name = 'accounts/vacancy-list.html'
     model = Vacancy
     context_object_name = 'vacancies'
