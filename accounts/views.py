@@ -1,15 +1,14 @@
-from django.db.models import Count
-from django.shortcuts import render
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView, TemplateView, ListView
-from django.shortcuts import redirect
-
-from accounts.mixins import CompanyAccessMixin
-from accounts.forms import CompanyForm, VacancyForm
+from django.db.models import Count
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, ListView, TemplateView
 from hiring.models import Company, Vacancy
+
+from accounts.forms import CompanyForm, VacancyForm
+from accounts.mixins import CompanyAccessMixin
 
 
 class MyLoginView(LoginView):
@@ -111,7 +110,7 @@ class CreateVacancyView(LoginRequiredMixin, CompanyAccessMixin, TemplateView):
         return render(request, 'accounts/company-edit.html', context={'form': form})
 
 
-class MyCompanyVacansyView(TemplateView):
+class MyCompanyVacansyView(LoginRequiredMixin, CompanyAccessMixin, TemplateView):
     template_name = 'accounts/vacancy-edit.html'
     pk_url_kwarg = 'vacancy_id'
 

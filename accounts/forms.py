@@ -1,5 +1,4 @@
 from django import forms
-
 from hiring.models import Company, Vacancy
 
 

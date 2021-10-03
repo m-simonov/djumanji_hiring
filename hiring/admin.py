@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Company, Specialty, Vacancy, Application
+
+from .models import Application, Company, Specialty, Vacancy
 
 
 class CompanyAdmin(admin.ModelAdmin):

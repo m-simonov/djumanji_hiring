@@ -1,6 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
-from djumanji_hiring.settings import MEDIA_COMPANY_IMAGE_DIR, MEDIA_SPECIALITY_IMAGE_DIR
+from django.db import models
+from djumanji_hiring.settings import (MEDIA_COMPANY_IMAGE_DIR,
+                                      MEDIA_SPECIALITY_IMAGE_DIR)
 
 
 class Company(models.Model):
