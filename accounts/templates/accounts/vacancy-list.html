@@ -24,13 +24,13 @@
                 <div class="card-body px-4">
                   <div class="row align-items-center">
                     <div class="col-6 col-lg-8">
-                        <a href="#" class="mb-1">{{ vacancy.title }}</a>
+                        <a href="{% url 'vacancy' vacancy.id %}" class="mb-1">{{ vacancy.title }}</a>
                       <p class="mb-1">
                       <span class="mr-4">{{ vacancy.salary_max }}</span><a href="#" class="text-info">{{ vacancy.applications_count }} откликов</a>
                       </p>
                     </div>
                     <div class="col-6 col-lg-4 text-right">
-                      <a href="#" class="btn btn-outline-info">Изменить</a>
+                      <a href="{% url 'my_company_vacancy' vacancy.id %}" class="btn btn-outline-info">Изменить</a>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
               {% endfor %}
               <!-- END vacancy state 1 -->
               <div class="card-body px-0">
-                <a href="#" class="btn btn-outline-info">Добавить</a>
+                <a href="{% url 'create_vacancy' %}" class="btn btn-outline-info">Добавить</a>
               </div>
             </section>
           </div>

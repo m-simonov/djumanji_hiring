@@ -18,13 +18,13 @@
           <div class="card-body px-4 pb-4">
             <!-- Tab -->
             <section class="tab-pane fade show active">
-              <h2 class="h4 pt-2 pb-3">Информация о&nbsp;компании</h2>
-              {% load crispy_forms_tags %}
               {% for message in messages %}
               <p class="alert alert-info" role="alert">
                 {{ message|safe }}
               </p>
               {% endfor %}
+              <h2 class="h4 pt-2 pb-3">Информация о&nbsp;компании</h2>
+              {% load crispy_forms_tags %}
               <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
                 <div class="row">
@@ -40,12 +40,13 @@
                             <img src="{{ company_edit.logo.url }}" alt="" style="max-width: 120px;height: auto;">
                         </div>
                         <div class="col-6" style="position: relative;">
-                          <div class="input-group-prepend" style="position: absolute; top: 0;right: 15px;">
+                          <!-- <div class="input-group-prepend" style="position: absolute; top: 0;right: 15px;"> -->
+                          <div class="input-group-prepend" style="position: absolute; top: -55px;right: 15px;">
                             {{ form.logo|as_crispy_field }}
                           </div>
-                          <div class="custom-file" style="">
+                          <!-- <div class="custom-file" style="">
                             <input type="file" class="custom-file-input" id="inputGroupFile01">
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
