@@ -1,6 +1,7 @@
 {% extends 'accounts/base_acc.html' %}
 
 {% block container %}
+{% load l10n %}
 {% load ru_pluralize %}
 
   <main class="container mt-3 pb-5">
@@ -27,7 +28,9 @@
                     <div class="col-6 col-lg-8">
                         <a href="{% url 'vacancy' vacancy.id %}" class="mb-1">{{ vacancy.title }}</a>
                       <p class="mb-1">
+                      {% localize on %}
                       <span class="mr-4">{{ vacancy.salary_max }}</span><a href="#" class="text-info">{{ vacancy.applications_count|ru_pluralize:'отклик,отклика,откликов' }}</a>
+                      {% endlocalize %}
                       </p>
                     </div>
                     <div class="col-6 col-lg-4 text-right">

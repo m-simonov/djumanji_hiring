@@ -1,6 +1,7 @@
 {% extends 'hiring/base.html' %}
 
 {% block container %}
+{% load l10n %}
 {% load ru_pluralize %}
 
   <main class="container mt-3 pb-5">
@@ -15,7 +16,9 @@
             <a href="{% url 'company' vacancy.company_id %}"><img src="{{ vacancy.company.logo.url }}" width="130" height="80" alt=""></a>
           <div class="d-flex align-items-baseline align-content-baseline">
               <h1 class="h2 mt-4 font-weight-bold" >{{ vacancy.title }}</h1>
-            <p class="m-0 pl-3">120 000 – 220 000 Р</p>
+              {% localize on %}
+            <p class="m-0 pl-3">{{ vacancy.salary_min }} – {{ vacancy.salary_max }} Р</p>
+            {% endlocalize %}
           </div>
           <p class="mt-2">{{ vacancy.skills }}</p>
           <p class="text-muted mb-4">{{ company_name }} ({{ employee_count|ru_pluralize:'человек,человека,человек' }}), {{ location }} или удаленно</p>
